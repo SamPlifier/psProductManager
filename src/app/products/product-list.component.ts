@@ -11,7 +11,15 @@ export class ProductListComponent implements OnInit {
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: boolean = false;
-  listFilter: string = 'cart';
+  _listFilter: string;
+  filteredProducts: IProduct[];
+  get listFilter(): string {
+      return this._listFilter;
+  }
+  set listFilter(value: string) {
+      this._listFilter = value;
+      this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
+  }
   // typescript declaration when data type is unknown or unimportant
   products: IProduct[] = [{
     'productId': 2,
@@ -33,6 +41,15 @@ export class ProductListComponent implements OnInit {
       'starRating': 4.8,
       'imageUrl': 'https://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png'
   }];
+  constructor() {
+      this.filteredProducts = this.products;
+      this.listFilter = '';
+  }
+  performFilter(filterBy: string): IProduct[] {
+      filterBy = filterBy.toLowerCase();
+      return this.products.filter((product: IProduct) =>
+          product.productName.toLowerCase().indexOf(filterBy) !== -1);
+  }
   // specified return type as void since it doesn't have one
   toggleImage(): void {
       this.showImage = !this.showImage;
