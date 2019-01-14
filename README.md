@@ -1,3 +1,5 @@
+Pluralsight course 'code-along' using angular 7 and typescript.
+
 # APM
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
