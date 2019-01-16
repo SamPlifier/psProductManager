@@ -169,7 +169,7 @@ var WelcomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "button {\n    width: 80px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJvZHVjdHMvcHJvZHVjdC1kZXRhaWwuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7Q0FDZiIsImZpbGUiOiJzcmMvYXBwL3Byb2R1Y3RzL3Byb2R1Y3QtZGV0YWlsLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJidXR0b24ge1xuICAgIHdpZHRoOiA4MHB4O1xufVxuIl19 */"
+module.exports = "button {\n  width: 80px;\n}\n\n.list-group-item {\n  border: none;\n}\n\nimg {\n  margin: 25px 0;\n}\n\n.container>.row {\n  display: flex;\n  align-items: center;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJvZHVjdHMvcHJvZHVjdC1kZXRhaWwuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVk7Q0FDYjs7QUFFRDtFQUNFLGFBQWE7Q0FDZDs7QUFFRDtFQUNFLGVBQWU7Q0FDaEI7O0FBRUQ7RUFDRSxjQUFjO0VBQ2Qsb0JBQW9CO0NBQ3JCIiwiZmlsZSI6InNyYy9hcHAvcHJvZHVjdHMvcHJvZHVjdC1kZXRhaWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJ1dHRvbiB7XG4gIHdpZHRoOiA4MHB4O1xufVxuXG4ubGlzdC1ncm91cC1pdGVtIHtcbiAgYm9yZGVyOiBub25lO1xufVxuXG5pbWcge1xuICBtYXJnaW46IDI1cHggMDtcbn1cblxuLmNvbnRhaW5lcj4ucm93IHtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -180,7 +180,7 @@ module.exports = "button {\n    width: 80px;\n}\n\n/*# sourceMappingURL=data:app
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" *ngIf='product'>\n    <div class=\"card-header\">\n        {{pageTitle + ': ' + product.productName}}\n    </div>\n    <div class=\"card-footer\">\n        <button class=\"btn btn-outline-secondary\" (click)='onBack()'>\n            <i class=\"fa fa-chevron-left\"></i>Back\n        </button>\n    </div>\n</div>\n"
+module.exports = "<div class=\"card\" *ngIf='product'>\n    <div class=\"card-header\">\n        {{product.productName}}\n    </div>\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-md-6\"><img src={{product.imageUrl}} alt={{product.imageUrl}}></div>\n            <div class=\"col-md-6\">\n                <ul class=\"list-group\">\n                    <li class=\"list-group-item\">Price: {{product.price | currency:'USD':'symbol':'1.2-2'}}</li>\n                    <li class=\"list-group-item\">Description: {{product.description}}</li>\n                    <li class=\"list-group-item\">Released: {{product.releaseDate}}</li>\n                    <li class=\"list-group-item\">Rating: {{product.starRating}}<pm-star [rating]=\"product.starRating\"></pm-star></li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class=\"card-footer\">\n        <button class=\"btn btn-outline-secondary\" (click)='onBack()'>\n            <i class=\"fa fa-chevron-left\"></i>Back\n        </button>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -196,6 +196,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductDetailComponent", function() { return ProductDetailComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _product_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./product.service */ "./src/app/products/product.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -207,25 +208,26 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var ProductDetailComponent = /** @class */ (function () {
-    function ProductDetailComponent(route, router) {
+    function ProductDetailComponent(route, router, productService) {
         this.route = route;
         this.router = router;
+        this.productService = productService;
         this.pageTitle = 'Product Detail';
     }
     ProductDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
         var id = +this.route.snapshot.paramMap.get('id');
-        this.pageTitle += ": " + id;
-        this.product = {
-            'productId': id,
-            'productName': 'Leaf Rake',
-            'productCode': 'GDN-0011',
-            'releaseDate': 'March 19, 2016',
-            'description': 'Leaf rake with 48-inch wooden handle.',
-            'price': 19.95,
-            'starRating': 3.2,
-            'imageUrl': 'https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png'
-        };
+        var item = this.item;
+        this.pageTitle += ": Item " + id;
+        this.productService.getProducts().subscribe(function (product) {
+            for (item in product) {
+                if (product[item].productId === id) {
+                    _this.product = product[item];
+                }
+            }
+        });
     };
     ProductDetailComponent.prototype.onBack = function () {
         this.router.navigate(['/products']);
@@ -235,7 +237,7 @@ var ProductDetailComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./product-detail.component.html */ "./src/app/products/product-detail.component.html"),
             styles: [__webpack_require__(/*! ./product-detail.component.css */ "./src/app/products/product-detail.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _product_service__WEBPACK_IMPORTED_MODULE_2__["ProductService"]])
     ], ProductDetailComponent);
     return ProductDetailComponent;
 }());
@@ -345,7 +347,6 @@ var ProductListComponent = /** @class */ (function () {
         this.imageWidth = 50;
         this.imageMargin = 2;
         this.showImage = false;
-        // typescript declaration when data type is unknown or unimportant
         this.products = [];
         this.listFilter = '';
     }
@@ -607,7 +608,7 @@ var SharedModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".crop {\n  overflow: hidden;\n}\ndiv {\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2hhcmVkL3N0YXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGlCQUFpQjtDQUNsQjtBQUNEO0VBQ0UsZ0JBQWdCO0NBQ2pCIiwiZmlsZSI6InNyYy9hcHAvc2hhcmVkL3N0YXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jcm9wIHtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbn1cbmRpdiB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn0iXX0= */"
+module.exports = ".crop {\n  overflow: hidden;\n}\ndiv {\n  cursor: pointer;\n}\n.fa-star {\n    color: yellow;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2hhcmVkL3N0YXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGlCQUFpQjtDQUNsQjtBQUNEO0VBQ0UsZ0JBQWdCO0NBQ2pCO0FBQ0Q7SUFDSSxjQUFjO0NBQ2pCIiwiZmlsZSI6InNyYy9hcHAvc2hhcmVkL3N0YXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jcm9wIHtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbn1cbmRpdiB7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cbi5mYS1zdGFyIHtcbiAgICBjb2xvcjogeWVsbG93O1xufVxuIl19 */"
 
 /***/ }),
 
