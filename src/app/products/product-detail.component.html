@@ -1,6 +1,19 @@
 <div class="card" *ngIf='product'>
     <div class="card-header">
-        {{pageTitle + ': ' + product.productName}}
+        {{product.productName}}
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6"><img src={{product.imageUrl}} alt={{product.imageUrl}}></div>
+            <div class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item">Price: {{product.price | currency:'USD':'symbol':'1.2-2'}}</li>
+                    <li class="list-group-item">Description: {{product.description}}</li>
+                    <li class="list-group-item">Released: {{product.releaseDate}}</li>
+                    <li class="list-group-item">Rating: {{product.starRating}}<pm-star [rating]="product.starRating"></pm-star></li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="card-footer">
         <button class="btn btn-outline-secondary" (click)='onBack()'>

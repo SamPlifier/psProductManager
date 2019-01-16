@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
       this._listFilter = value;
       this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
   }
-  // typescript declaration when data type is unknown or unimportant
+
   products: IProduct[] = [];
   constructor(private productService: ProductService) {
       this.listFilter = '';
