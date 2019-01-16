@@ -124,7 +124,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"card-header\">\n    {{pageTitle}}\n  </div>\n  <div class=\"card-body\">\n    <div class=\"container-fluid\">\n      <div class=\"text-center\">\n        <img src=\"./assets/images/logo.jpg\"\n             class=\"img-responsive center-block\"\n             style=\"max-height:300px;padding-bottom:50px\" />\n      </div>\n\n      <div class=\"text-center\">Developed by:</div>\n      <div class=\"text-center\">\n        <h3>Deborah Kurata</h3>\n      </div>\n\n      <div class=\"text-center\">@deborahkurata</div>\n      <div class=\"text-center\">\n        <a href=\"http://www.bit.ly/DeborahKsBlog\">www.bit.ly/DeborahKsBlog</a>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"card\">\n  <div class=\"card-header\">\n    {{pageTitle}}\n  </div>\n  <div class=\"card-body\">\n    <div class=\"container-fluid\">\n      <div class=\"text-center\">\n        <img src=\"./assets/images/logo.jpg\"\n             class=\"img-responsive center-block\"\n             style=\"max-height:300px;padding-bottom:50px\" />\n      </div>\n\n      <div class=\"text-center\">Developed by:</div>\n      <div class=\"text-center\">\n        <h3>Deborah Kurata</h3>\n      </div>\n\n      <div class=\"text-center\">@deborahkurata</div>\n      <div class=\"text-center\">\n        <a href=\"http://www.bit.ly/DeborahKsBlog\">www.bit.ly/DeborahKsBlog</a>\n      </div>\n      <div class=\"text-center\">(Pluralsight Course completed Sam Davis-Castro.)</div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
