@@ -1,4 +1,5 @@
-Pluralsight course 'code-along' using angular 7 and typescript.
+## View live version at https://samplifier.github.io/psProductManager/dist/APM/index.html
+Pluralsight course 'code-along' using angular 7 and typescript. https://app.pluralsight.com/library/courses/angular-2-getting-started-update/table-of-contents
 
 # APM
 
